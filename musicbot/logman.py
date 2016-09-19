@@ -1,6 +1,6 @@
 """
 Hi im logman. I take care of logging history of played tracks. I also help
-remembering queued songs in case of restart.
+remembering queued songs in case of restart BUT NOT YET SO COOL YOUR JETS.
 """
 
 import datetime
@@ -22,14 +22,13 @@ class Logman():
         self.connection.close()
 
     def log_song(self, entry):
-        """Use this to log a song history."""
-        time = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        """Use this to log a song to play history."""
 
         song = {
-            'playedAt': time,
+            'playedAt': datetime.datetime.now(),
             'title': entry.title,
             'url': entry.url,
-            'requestedBy': str(entry.meta['author'])
+            'requestedBy': str(entry.meta['author'].id)
         }
 
         try:
