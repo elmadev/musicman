@@ -15,7 +15,7 @@ class Logman():
     def __init__(self, mongodb_uri):
         self.connection = pymongo.MongoClient(mongodb_uri)
         self.db = self.connection.get_default_database()
-        self.history = self.db['history']
+        self.musichistory = self.db['musichistory']
         atexit.register(self._disconnect)
 
     def _disconnect(self):
@@ -32,7 +32,7 @@ class Logman():
         }
 
         try:
-            self.history.insert(song)
+            self.musichistory.insert(song)
 
         except (OperationFailure, ServerSelectionTimeoutError):
             print("[Logman] \"im hev trouble comunicating with mongodb. "
