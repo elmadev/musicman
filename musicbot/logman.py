@@ -27,9 +27,11 @@ class Logman():
         song = {
             'playedAt': datetime.datetime.now(),
             'title': entry.title,
-            'url': entry.url,
-            'requestedBy': str(entry.meta['author'].id)
+            'url': entry.url
         }
+        
+        if hasattr(entry.meta, 'author'):
+            song.requestedBy = str(entry.meta['author'].id)
 
         try:
             self.musichistory.insert(song)
